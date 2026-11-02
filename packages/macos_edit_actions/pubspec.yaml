@@ -1,0 +1,20 @@
+name: macos_edit_actions
+description: Makes the standard edit commands of macOS (paste, copy, cut, select all) work in Flutter text fields.
+version: 0.1.0
+repository: https://github.com/DimitriSky/flutter_macos_patches
+publish_to: none
+environment:
+  sdk: ^3.12.2
+  flutter: '>=3.44.0'
+dependencies:
+  flutter:
+    sdk: flutter
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+flutter:
+  plugin:
+    platforms:
+      macos:
+        pluginClass: MacosEditActionsPlugin
