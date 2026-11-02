@@ -4,9 +4,9 @@ Updated: 2026-09-26.
 
 ## Scope
 
-macOS, Flutter 3.47.5 on T7, Dart 3.13.4, webview_flutter 4.14.1,
+macOS, Flutter 3.47.5, Dart 3.13.4, webview_flutter 4.14.1,
 webview_flutter_wkwebview 3.26.1. Input was sent through Computer Use to the
-separate `com.dmilab.webviewkeylab` app. No TalkTo code was changed.
+separate `com.dmilab.webviewkeylab` app. No app code was changed.
 Most results below use automated input. B2 failed the physical control;
 B3 passed both physical controls with the new command boundary active,
 including the observation-disabled control and held Enter. Broad physical
@@ -51,7 +51,7 @@ a viable candidate as-is: the physical
 Shift+Escape loop stayed in WebKit and never retriggered its Flutter guard.
 The separate B1 loop did show repeated Flutter entry by the same NSEvent;
 B2's unit test rejects that route, but no live B2 run exercised the guard.
-Neither an engine patch nor TalkTo integration is included.
+Neither an engine patch nor app integration is included.
 
 ## Coverage And Limits
 
@@ -99,7 +99,7 @@ so this is not counted as a keyboard correction success or regression.
 - Result persistence was verified by closing and reopening the app after
   aborted runs: the 0 and A results were retained.
 
-The first XCTest launch and later T7 file operations temporarily stalled in
+The first XCTest launch and later external-drive file operations temporarily stalled in
 `open`/dyld. No permission or security protection was disabled. A subsequent
 XCTest run completed successfully. This was not counted as a key-loop result.
 The final hosted reruns stalled again before executing tests and were stopped;
@@ -145,7 +145,7 @@ without a crash. This was a lab diagnostic fault, not evidence of a package
 key-routing failure.
 
 Seven lab Dart tests, nine package native Core tests, three package Dart tests,
-and eight TalkTo Settings widget tests passed. The lab Debug app and test
+and eight app Settings widget tests passed. The lab Debug app and test
 target built successfully. Hosted `RunnerTests` did not run:
 both the full and targeted Xcode launches stalled before test execution and
 were interrupted. Do not count the newly added native regression as passed.
@@ -158,8 +158,8 @@ previously problematic shortcuts above; it is not a full physical matrix.
 The evidence supports keeping the current package enabled for normal use.
 Another full automatic matrix is not needed unless the package or its
 Flutter/WebView dependencies change, or a new failure appears. The next useful
-short check is physical input inside TalkTo's actual browser, including a
-focus change back to a Flutter field: the TalkTo live check so far covered
+short check is physical input inside the app's actual browser, including a
+focus change back to a Flutter field: the live check in the app so far covered
 the Settings switch and persistence, while keyboard delivery was tested here.
 Eight non-Shift equal chords, other keyboard layouts/IME, modifier release
 order, and native cancellation behavior remain targeted follow-up coverage.

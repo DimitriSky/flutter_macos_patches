@@ -1,7 +1,7 @@
 import Cocoa
 import Carbon
 
-// A copy of VoiceCommand's TextInjector (TextInjector.swift): put the text on
+// Mimics a dictation app's text injector: put the text on
 // the pasteboard, wait pasteDelay, post Cmd down / V down / V up / Cmd up to
 // cghidEventTap with no pause between them, restore the pasteboard after
 // restoreDelay. The only addition is a guard: it pastes only while the frontmost

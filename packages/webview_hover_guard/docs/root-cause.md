@@ -1,6 +1,6 @@
 # Hover jump in macOS WebViews: root cause
 
-Found 2026-10-20 in TalkTo's in-app browser (webview_flutter, Flutter 3.44.6, macOS).
+Found 2026-10-20 in an app's in-app browser (webview_flutter, Flutter 3.44.6, macOS).
 
 ## Symptom
 

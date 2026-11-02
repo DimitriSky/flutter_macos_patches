@@ -1,7 +1,7 @@
 # Edit menu and injected Cmd+V in Flutter macOS: root cause
 
-Found 2026-11-02 in TalkTo (Flutter 3.44–3.47, macOS) while checking dictation with
-VoiceCommand, which pastes by injecting Cmd+V.
+Found 2026-11-02 in a Flutter macOS app (Flutter 3.44–3.47) while checking a
+dictation app that pastes by injecting Cmd+V.
 
 ## Symptom
 

@@ -1,7 +1,7 @@
 # WebView Key Lab
 
 An isolated macOS comparison app for repeated WebView keyboard events. Running
-the lab does not modify TalkTo or the default Flutter SDK. It lives under
+the lab does not modify the host app or the default Flutter SDK. It lives under
 `webview_key_guard/example/`; mode P consumes the package source in this checkout.
 The app is named
 `WebView Key Lab`, bundle ID `com.dmilab.webviewkeylab`.
@@ -45,7 +45,7 @@ flutter run -d macos
 ```
 
 See the [package README](https://github.com/DimitriSky/flutter_webview_key_guard/blob/main/README.md)
-for its tests, Settings toggle, and removal instructions. The TalkTo
+for its tests, Settings toggle, and removal instructions. The host app
 application and backend need not run for the lab to resolve the package.
 
 After changing native Swift, rebuild/relaunch the lab. A previously built
@@ -152,7 +152,7 @@ in either B3 or plain native D; this is not counted as a formatting pass.
 The sidebar switches methods at runtime. Refresh starts a **new** run and a
 new WebView. Reopening the D window keeps the existing run. The toolbar can
 hide the comparison controls. Results are retained between app launches.
-The page records keyboard events only; it never calls models or TalkTo.
+The page records keyboard events only; it never calls models or the host app.
 The native snapshot includes a bounded event-stage trace without typed text.
 
 The follow-up trace also keeps event beginnings, monotonic callback-arrival
@@ -206,7 +206,7 @@ The original no-fix source was recorded in old lab commit `5a6d4fb`.
 Reuse audit: the needed WebView host reuses stock `WebViewWidget`; A keeps
 the existing Cmd+Enter algorithm as a control. Native routing and telemetry
 have new owners because the minimal project had no equivalent components.
-This test harness is deliberately not extracted into TalkTo production code.
+This test harness is deliberately not extracted into the app's production code.
 `main.dart` shrank from 53 to 25 lines; native bootstrap stays small. Each
 new source owner is under 250 lines, below the 350-line target.
 
@@ -222,7 +222,7 @@ dependency already points to the parent package at `..`.
 - 7 Dart tests, 4 Node tests, and 9 native Core tests in the shared package passed.
 - Flutter analysis and macOS Debug build passed on the existing Flutter 3.47.5 SDK.
 - At the time of this run, both consumers' resolved package configs pointed to
-  the same package inside TalkTo. The package has since moved to its own repository;
+  the same package inside the host app. The package has since moved to its own repository;
   this historical run is not a new test of the relocated build.
 - Live P -> B3 -> 0 -> P switching confirmed `packageEnabled` true/false/false/true
   and `implementation` package/lab/lab/package. Historical results remain separate.
@@ -253,7 +253,7 @@ native plugin to that one directory. No keyboard logic changed during the
 move. The current installation instructions above supersede that local setup.
 
 All 7 lab Dart tests and 4 Node tests passed again, as did 9 Core XCTest and
-3 Dart tests in the package and 8 TalkTo setting tests. Package/lab analysis
+3 Dart tests in the package and 8 app setting tests. Package/lab analysis
 and both macOS Debug builds passed. Builds used separate
 `build/key-guard-extraction` outputs; the existing SDK versions were retained.
 Apps were not launched, and hosted RunnerTests, physical input, and the
@@ -274,15 +274,15 @@ A separate crash during the first editing attempt occurred while the lab trace
 read `NSEvent.isARepeat`. Both diagnostic event readers now limit that read to
 keyDown events; the first rebuilt app passed the editing replay. Its new native
 regression test compiled, but Xcode's hosted test launch stalled before
-execution; this test is not counted as passed. TalkTo's Settings widget
+execution; this test is not counted as passed. The app's Settings widget
 tests passed, and an isolated Debug app retained the off preference across
 a process restart before it was restored to on.
 
 ## Historical Minimal Baseline
 
 The original commit was a minimal macOS Flutter application created to isolate the repeated
-`Cmd+Enter` event observed in TalkTo. It contains one stock `WebViewWidget` and
-does not contain TalkTo code, `performKeyEquivalent` overrides, JavaScript event
+`Cmd+Enter` event observed in the app. It contains one stock `WebViewWidget` and
+does not contain app code, `performKeyEquivalent` overrides, JavaScript event
 cancellation, debounce logic, or the `WebViewCommandKeyRouter` workaround.
 
 ## Original baseline environment
@@ -293,7 +293,7 @@ cancellation, debounce logic, or the `WebViewCommandKeyRouter` workaround.
 - `webview_flutter_wkwebview 3.26.0`
 - macOS diagnostic URL: `http://127.0.0.1:8001/keys`
 
-The WebView package versions match the TalkTo lockfile used during the original
+The WebView package versions match the app lockfile used during the original
 investigation.
 
 ## Reproduce Historical Baseline
@@ -323,7 +323,7 @@ Click the textarea once and press `Cmd+Enter` once. Inspect the page counter or
 ## Result from 2026-09-25
 
 One synthetic `Cmd+Enter`, delivered through the same Computer Use path used in
-the TalkTo reproduction, produced:
+the app reproduction, produced:
 
 - 8,899 `keydown` events;
 - 8,899 `keypress` events;
@@ -336,8 +336,8 @@ The application was terminated to stop the loop. The raw diagnostic log is:
 investigation-project/.cache/investigation/reproduction/20260925-101306.jsonl
 ```
 
-This reproduces the TalkTo incident signature without TalkTo code. It proves
-that the defect exists in the stock Flutter macOS WebView stack used by TalkTo.
+This reproduces the app incident signature without app code. It proves
+that the defect exists in the stock Flutter macOS WebView stack used by the app.
 It does not by itself distinguish whether the responsible layer is the Flutter
 engine, `webview_flutter_wkwebview`, or their interaction with AppKit/WKWebView.
 
@@ -357,7 +357,7 @@ The new SDK occupies approximately 3.9 GiB, excluding the downloaded archive.
 
 Each row below represents one synthetic `super+Return` through Computer Use,
 with the textarea focused. All builds are debug macOS builds of this project
-without the TalkTo fix. `webview_flutter` stayed at `4.14.1` throughout.
+without the app fix. `webview_flutter` stayed at `4.14.1` throughout.
 
 | Flutter | WKWebView plugin | Saved keydown | Saved keypress | Result |
 | --- | --- | ---: | ---: | --- |
