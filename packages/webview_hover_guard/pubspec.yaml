@@ -1,7 +1,7 @@
 name: webview_hover_guard
 description: Keeps web page hover on macOS WebViews under the mouse when Flutter redraws.
 version: 0.1.0
-repository: https://github.com/DimitriSky/flutter_webview_macos_patches
+repository: https://github.com/DimitriSky/flutter_macos_patches
 publish_to: none
 environment:
   sdk: ^3.12.2

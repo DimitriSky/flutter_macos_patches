@@ -1,7 +1,11 @@
-# Flutter WebView macOS patches
+# Flutter macOS patches
 
-Fixes for WebKit pages (WKWebView) embedded in Flutter macOS apps.
+Fixes for places where the Flutter macOS embedder and AppKit do not work together:
+web pages (WKWebView) embedded in Flutter apps today, and the text input of Flutter fields.
 Each fix is a separate Flutter plugin in `packages/`; an app adds only the ones it needs.
+
+> This repository was named `flutter_webview_macos_patches` until 2026-11-02. GitHub redirects
+> the old address, so existing `git:` dependencies and pinned commits keep working.
 
 | Package | Problem it fixes |
 |---|---|
@@ -15,7 +19,7 @@ Each fix is a separate Flutter plugin in `packages/`; an app adds only the ones 
 dependencies:
   webview_key_guard:
     git:
-      url: https://github.com/DimitriSky/flutter_webview_macos_patches.git
+      url: https://github.com/DimitriSky/flutter_macos_patches.git
       path: packages/webview_key_guard
       ref: <commit>
 ```

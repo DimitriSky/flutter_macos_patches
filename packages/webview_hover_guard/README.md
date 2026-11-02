@@ -35,7 +35,7 @@ Add the dependency; there is nothing to call.
 dependencies:
   webview_hover_guard:
     git:
-      url: https://github.com/DimitriSky/flutter_webview_macos_patches.git
+      url: https://github.com/DimitriSky/flutter_macos_patches.git
       path: packages/webview_hover_guard
       ref: <commit>
 ```

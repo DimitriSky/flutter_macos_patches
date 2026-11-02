@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   s.version = '0.1.0'
   s.summary = 'Keeps web page hover under the mouse in Flutter macOS WebViews.'
   s.description = 'Skips the Flutter engine re-adding an already attached platform view container on every frame.'
-  s.homepage = 'https://github.com/DimitriSky/flutter_webview_macos_patches'
+  s.homepage = 'https://github.com/DimitriSky/flutter_macos_patches'
   s.license = { :type => 'Proprietary', :file => '../LICENSE' }
   s.author = 'WebView Hover Guard contributors'
   s.source = { :path => '.' }
